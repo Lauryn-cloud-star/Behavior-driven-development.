@@ -1,0 +1,16 @@
+Feature: Customer Search and Purchase item from the application
+  In this feature a customer will come to my application, login, search,
+  do payment and logout
+
+    Scenario: New User (Unregistered User) comes to application, Search, Register and Purchase
+            Given User opens browser, enters URL and navigates to login page
+            When User enters data in Search field
+            And User clicks on Search button
+            And User clicks on Add to cart for the first search result
+            And User clicks on My Cart button
+            Then User should get item added in Cart
+            And User should see price of item in front of item name
+            When User clicks on Purchase button
+            And User selects payment mode as Credit Card
+
+    Scenario: Registered User, Search Item, Add to cart and Purchase
