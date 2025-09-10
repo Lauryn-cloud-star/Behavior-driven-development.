@@ -1,0 +1,199 @@
+Feature: Jumia E-commerce Platform
+  As a customer
+  I want to shop online on Jumia
+  So that I can purchase products conveniently
+
+  Background:
+    Given User opens browser and navigates to Jumia website
+
+  # Feature 1: Product Search and Browsing
+  @search
+  Scenario: User searches for a specific product
+    When User enters "smartphone" in the search field
+    And User clicks on the search button
+    Then User should see search results for smartphones
+    And User should see product images and prices
+    And User should see filter options on the left sidebar
+
+  @search
+  Scenario: User applies filters to search results
+    When User searches for "laptop"
+    And User applies price filter from "₦50,000" to "₦200,000"
+    And User selects "Dell" brand filter
+    Then User should see filtered results within the price range
+    And User should see only Dell laptops in the results
+
+  @search
+  Scenario: User browses product categories
+    When User clicks on "Electronics" category
+    And User clicks on "Phones & Tablets" subcategory
+    Then User should see phones and tablets products
+    And User should see category breadcrumb navigation
+
+  # Feature 2: User Registration and Login
+  @authentication
+  Scenario: New user registers an account
+    When User clicks on "Sign Up" button
+    And User enters valid email address
+    And User enters password "TestPassword123"
+    And User enters phone number "08012345678"
+    And User clicks on "Create Account" button
+    Then User should receive verification email
+    And User should be redirected to email verification page
+
+  @authentication
+  Scenario: Existing user logs in successfully
+    When User clicks on "Login" button
+    And User enters registered email address
+    And User enters correct password
+    And User clicks on "Sign In" button
+    Then User should be logged in successfully
+    And User should see "Welcome" message with their name
+
+  @authentication
+  Scenario: User attempts login with invalid credentials
+    When User clicks on "Login" button
+    And User enters invalid email address
+    And User enters wrong password
+    And User clicks on "Sign In" button
+    Then User should see "Invalid credentials" error message
+    And User should remain on login page
+
+  # Feature 3: Shopping Cart Management
+  @cart
+  Scenario: User adds product to shopping cart
+    When User searches for "wireless headphones"
+    And User clicks on "Add to Cart" for the first product
+    Then User should see "Item added to cart" confirmation message
+    And Cart icon should show updated item count
+    And User should see product in mini cart preview
+
+  @cart
+  Scenario: User views shopping cart contents
+    When User clicks on cart icon
+    Then User should see all added items in cart
+    And User should see individual item prices
+    And User should see total cart value
+    And User should see "Proceed to Checkout" button
+
+  @cart
+  Scenario: User removes item from shopping cart
+    When User opens shopping cart
+    And User clicks on "Remove" button for an item
+    Then User should see "Item removed" confirmation
+    And Cart total should be updated
+    And Removed item should not appear in cart
+
+  # Feature 4: Checkout and Payment
+  @checkout
+  Scenario: User proceeds to checkout as guest
+    When User has items in cart
+    And User clicks on "Proceed to Checkout"
+    And User selects "Guest Checkout" option
+    Then User should be taken to checkout page
+    And User should see delivery address form
+    And User should see payment method options
+
+  @checkout
+  Scenario: User completes purchase with card payment
+    When User fills in delivery address details
+    And User selects "Credit/Debit Card" payment method
+    And User enters valid card details
+    And User clicks on "Place Order" button
+    Then User should see order confirmation page
+    And User should receive order confirmation email
+    And User should see order tracking number
+
+  @checkout
+  Scenario: User applies discount coupon
+    When User proceeds to checkout
+    And User enters valid discount code "SAVE20"
+    And User clicks on "Apply Coupon" button
+    Then User should see discount applied to total
+    And User should see reduced final amount
+    And User should see "Coupon applied successfully" message
+
+  # Feature 5: User Account Management
+  @account
+  Scenario: User views order history
+    When User logs in to account
+    And User clicks on "My Orders" in account menu
+    Then User should see list of previous orders
+    And User should see order status for each order
+    And User should see order dates and amounts
+
+  @account
+  Scenario: User updates profile information
+    When User logs in to account
+    And User clicks on "Profile Settings"
+    And User updates phone number to "08098765432"
+    And User clicks on "Save Changes" button
+    Then User should see "Profile updated successfully" message
+    And Updated information should be reflected in profile
+
+  @account
+  Scenario: User adds new delivery address
+    When User goes to "Address Book" in account
+    And User clicks on "Add New Address"
+    And User fills in complete address details
+    And User clicks on "Save Address" button
+    Then User should see "Address added successfully" message
+    And New address should appear in address book
+
+  # Feature 6: Product Reviews and Ratings
+  @reviews
+  Scenario: User reads product reviews
+    When User opens a product page
+    And User scrolls to "Customer Reviews" section
+    Then User should see star ratings for the product
+    And User should see written reviews from customers
+    And User should see review dates and reviewer names
+
+  @reviews
+  Scenario: User writes a product review
+    When User purchases a product
+    And User receives delivery confirmation
+    And User clicks on "Write Review" button
+    And User gives 5-star rating
+    And User writes detailed review text
+    And User clicks on "Submit Review" button
+    Then User should see "Review submitted successfully" message
+    And Review should appear in product reviews section
+
+  # Feature 7: Wishlist Management
+  @wishlist
+  Scenario: User adds product to wishlist
+    When User is logged in to account
+    And User views a product page
+    And User clicks on "Add to Wishlist" button
+    Then User should see "Added to wishlist" confirmation
+    And Product should appear in user's wishlist
+    And Wishlist icon should show updated count
+
+  @wishlist
+  Scenario: User moves item from wishlist to cart
+    When User opens wishlist page
+    And User clicks on "Add to Cart" for a wishlist item
+    Then User should see "Item moved to cart" message
+    And Item should be removed from wishlist
+    And Item should appear in shopping cart
+
+  # Feature 8: Customer Support
+  @support
+  Scenario: User contacts customer support
+    When User clicks on "Help & Support" link
+    And User selects "Contact Us" option
+    And User fills in support form with issue details
+    And User clicks on "Submit" button
+    Then User should see "Support ticket created" confirmation
+    And User should receive support ticket number
+    And User should receive confirmation email
+
+  @support
+  Scenario: User tracks order delivery
+    When User logs in to account
+    And User opens "My Orders" page
+    And User clicks on "Track Order" for a recent order
+    Then User should see current delivery status
+    And User should see estimated delivery date
+    And User should see delivery tracking updates 

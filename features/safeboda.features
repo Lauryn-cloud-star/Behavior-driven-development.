@@ -1,0 +1,395 @@
+Feature: SafeBoda Ride-Hailing and Delivery Platform
+  As a customer
+  I want to book rides and order deliveries
+  So that I can travel safely and get items delivered conveniently
+
+  Background:
+    Given User opens browser and navigates to SafeBoda website
+
+  # Feature 1: User Registration and Profile
+  @profile
+  Scenario: New user creates SafeBoda account
+    When User clicks on "Sign Up" button
+    And User enters phone number "256701234567"
+    And User enters full name "John Doe"
+    And User enters email "john.doe@example.com"
+    And User enters password "SecurePass123"
+    And User clicks on "Create Account" button
+    Then User should receive OTP verification SMS
+    And User should be prompted to verify phone number
+
+  @profile
+  Scenario: User completes rider profile
+    When User goes to "Complete Profile" section
+    And User uploads profile picture
+    And User enters emergency contact "Mom - 256701234568"
+    And User sets home address "Kampala, Uganda"
+    And User sets work address "Nakasero, Kampala"
+    And User clicks on "Save Profile" button
+    Then User should see "Profile completed successfully" message
+    And Addresses should be saved for quick access
+    And Emergency contact should be configured
+
+  @profile
+  Scenario: User adds payment method
+    When User goes to "Payment Methods" section
+    And User clicks on "Add Payment Method"
+    And User selects "Mobile Money"
+    And User enters phone number "256701234567"
+    And User clicks on "Save Payment Method" button
+    Then User should see "Payment method added successfully" message
+    And Mobile money should be set as default payment
+    And User should be able to pay for rides
+
+  # Feature 2: Ride Booking
+  @booking
+  Scenario: User books a ride
+    When User enters pickup location "Kampala Mall"
+    And User enters destination "Entebbe Airport"
+    And User selects ride type "SafeBoda"
+    And User clicks on "Book Ride" button
+    Then User should see "Finding driver" message
+    And User should see estimated fare
+    And User should see estimated arrival time
+    And User should see driver details when matched
+
+  @booking
+  Scenario: User books ride with saved address
+    When User clicks on "Home" from saved places
+    And User clicks on "Work" as destination
+    And User selects ride type "SafeBoda Plus"
+    And User clicks on "Book Ride" button
+    Then User should see pickup and destination pre-filled
+    And User should see "Finding driver" message
+    And User should see fare estimate for saved route
+
+  @booking
+  Scenario: User schedules ride for later
+    When User enters pickup and destination locations
+    And User clicks on "Schedule" button
+    And User selects pickup time "Tomorrow 7:00 AM"
+    And User clicks on "Schedule Ride" button
+    Then User should see "Ride scheduled successfully" message
+    And User should receive confirmation SMS
+    And Ride should appear in scheduled rides list
+
+  # Feature 3: Driver Matching and Communication
+  @matching
+  Scenario: User gets matched with driver
+    When User books a ride
+    Then User should see driver's name and photo
+    And User should see driver's vehicle details
+    And User should see driver's rating and reviews
+    And User should see estimated arrival time
+    And User should see "Contact Driver" option
+
+  @matching
+  Scenario: User contacts driver
+    When User is matched with driver
+    And User clicks on "Call Driver" button
+    Then User should be connected to driver's phone
+    And Call should be made through app
+    And User should see call duration timer
+    And User should see driver's location on map
+
+  @matching
+  Scenario: User sends message to driver
+    When User clicks on "Message Driver" button
+    And User types message "I'm wearing a blue shirt"
+    And User clicks on "Send" button
+    Then User should see message sent successfully
+    And Driver should receive message notification
+    And Message should appear in chat history
+
+  # Feature 4: Ride Tracking and Safety
+  @tracking
+  Scenario: User tracks ride progress
+    When Driver accepts ride request
+    Then User should see driver's real-time location
+    And User should see driver's route to pickup
+    And User should see estimated pickup time
+    And User should see "Driver is on the way" status
+    And User should see driver's vehicle on map
+
+  @tracking
+  Scenario: User shares ride with emergency contact
+    When User is in active ride
+    And User clicks on "Share Trip" button
+    And User selects emergency contact "Mom"
+    And User clicks on "Share" button
+    Then User should see "Trip shared successfully" message
+    And Emergency contact should receive trip sharing link
+    And Contact should be able to track ride progress
+    And Contact should see driver and vehicle details
+
+  @tracking
+  Scenario: User uses SOS feature
+    When User feels unsafe during ride
+    And User clicks on "SOS" button
+    And User confirms emergency alert
+    Then User should see "Emergency alert sent" message
+    And SafeBoda support should be notified immediately
+    And Emergency contact should receive alert
+    And Police should be contacted if needed
+
+  # Feature 5: Ride Completion and Payment
+  @payment
+  Scenario: User completes ride and pays
+    When Driver reaches destination
+    And Driver ends trip
+    Then User should see "Trip completed" message
+    And User should see trip summary with details
+    And User should see final fare amount
+    And Payment should be processed automatically
+    And User should receive payment confirmation
+
+  @payment
+  Scenario: User adds tip to driver
+    When Trip is completed
+    And User clicks on "Add Tip" button
+    And User selects tip amount "2000 UGX"
+    And User clicks on "Confirm Tip" button
+    Then User should see "Tip added successfully" message
+    And Tip should be added to final payment
+    And Driver should receive tip notification
+    And Driver should be paid the tip amount
+
+  @payment
+  Scenario: User disputes fare
+    When User receives trip receipt
+    And User clicks on "Dispute Fare" button
+    And User selects reason "Route was longer than expected"
+    And User provides additional details
+    And User clicks on "Submit Dispute" button
+    Then User should see "Dispute submitted successfully" message
+    And User should receive dispute reference number
+    And Support team should review within 24 hours
+
+  # Feature 6: Delivery Services
+  @delivery
+  Scenario: User orders food delivery
+    When User goes to "Food Delivery" section
+    And User selects restaurant "KFC Kampala"
+    And User chooses menu items
+    And User enters delivery address
+    And User clicks on "Place Order" button
+    Then User should see "Order placed successfully" message
+    And User should receive order confirmation
+    And SafeBoda rider should be assigned for delivery
+
+  @delivery
+  Scenario: User tracks delivery progress
+    When User places delivery order
+    Then User should see delivery status updates
+    And User should see rider's location on map
+    And User should see estimated delivery time
+    And User should see "Contact Rider" option
+    And User should receive delivery notifications
+
+  @delivery
+  Scenario: User orders package delivery
+    When User goes to "Package Delivery" section
+    And User enters pickup address
+    And User enters delivery address
+    And User specifies package details
+    And User selects delivery speed "Same Day"
+    And User clicks on "Book Delivery" button
+    Then User should see "Delivery booked successfully" message
+    And User should see delivery cost and timeline
+    And Rider should be assigned for pickup
+
+  # Feature 7: Ride History and Receipts
+  @history
+  Scenario: User views ride history
+    When User goes to "Ride History" section
+    Then User should see list of previous rides
+    And User should see ride dates and times
+    And User should see pickup and destination addresses
+    And User should see fare amounts
+    And User should see driver names and ratings
+
+  @history
+  Scenario: User downloads ride receipt
+    When User clicks on specific ride in history
+    And User clicks on "Download Receipt" button
+    Then User should receive PDF receipt via email
+    And Receipt should contain trip details
+    And Receipt should contain fare breakdown
+    And Receipt should contain driver information
+
+  @history
+  Scenario: User rates driver after ride
+    When User completes ride
+    And User clicks on "Rate Driver" button
+    And User gives 5-star rating
+    And User selects "Excellent service" tag
+    And User writes comment "Very professional and safe driver"
+    And User clicks on "Submit Rating" button
+    Then User should see "Rating submitted successfully" message
+    And Driver should receive rating notification
+    And Rating should affect driver's overall score
+
+  # Feature 8: Ride Options and Preferences
+  @preferences
+  Scenario: User sets ride preferences
+    When User goes to "Ride Preferences" section
+    And User enables "Female Driver Only" option
+    And User enables "Quiet Ride" option
+    And User sets preferred vehicle type "Motorcycle"
+    And User clicks on "Save Preferences" button
+    Then User should see "Preferences saved" message
+    And Preferences should be applied to future rides
+    And Drivers should be filtered based on preferences
+
+  @preferences
+  Scenario: User sets accessibility preferences
+    When User goes to "Accessibility" settings
+    And User enables "Assistance Required" option
+    And User adds note "Please help with luggage"
+    And User enables "Wheelchair Accessible" option
+    And User clicks on "Save" button
+    Then User should see "Accessibility preferences saved" message
+    And Only accessible vehicles should be matched
+    And Drivers should be notified of assistance needs
+
+  @preferences
+  Scenario: User sets safety preferences
+    When User goes to "Safety" settings
+    And User enables "Share Trip Status" automatically
+    And User enables "Emergency Contacts" feature
+    And User adds emergency contact "Dad - 256701234569"
+    And User clicks on "Save" button
+    Then User should see "Safety preferences saved" message
+    And Trip status should be shared automatically
+    And Emergency contact should be notified during rides
+
+  # Feature 9: Ride Cancellation and Refunds
+  @cancellation
+  Scenario: User cancels ride before driver arrives
+    When User has booked a ride
+    And Driver is on the way
+    And User clicks on "Cancel Ride" button
+    And User selects cancellation reason "Changed my mind"
+    And User confirms cancellation
+    Then User should see "Ride cancelled successfully" message
+    And User should not be charged cancellation fee
+    And Driver should be notified of cancellation
+
+  @cancellation
+  Scenario: User cancels ride after driver arrives
+    When Driver has arrived at pickup location
+    And User clicks on "Cancel Ride" button
+    And User confirms cancellation
+    Then User should see "Ride cancelled" message
+    And User should be charged cancellation fee
+    And Driver should receive cancellation compensation
+    And User should see cancellation fee in receipt
+
+  @cancellation
+  Scenario: User requests refund for cancelled ride
+    When User cancels ride and is charged fee
+    And User clicks on "Request Refund" button
+    And User provides reason "Driver was late"
+    And User uploads screenshot evidence
+    And User clicks on "Submit Request" button
+    Then User should see "Refund request submitted" message
+    And User should receive refund reference number
+    And Refund should be processed within 3-5 business days
+
+  # Feature 10: SafeBoda Wallet and Rewards
+  @wallet
+  Scenario: User adds money to SafeBoda wallet
+    When User goes to "Wallet" section
+    And User clicks on "Add Money" button
+    And User enters amount "50000 UGX"
+    And User selects payment method "Mobile Money"
+    And User clicks on "Add Money" button
+    Then User should see "Money added successfully" message
+    And Wallet balance should be updated
+    And User should receive confirmation SMS
+
+  @wallet
+  Scenario: User uses wallet for ride payment
+    When User books a ride
+    And User selects "Pay with Wallet" option
+    And User completes the ride
+    Then Payment should be deducted from wallet
+    And User should see updated wallet balance
+    And User should receive payment confirmation
+    And Driver should receive payment immediately
+
+  @wallet
+  Scenario: User earns rewards points
+    When User completes a ride
+    Then User should see points earned notification
+    And Points should be added to user's account
+    And User should see progress toward next reward
+    And User should see available rewards to redeem
+
+  # Feature 11: Customer Support and Help
+  @support
+  Scenario: User contacts customer support
+    When User goes to "Help & Support" section
+    And User clicks on "Contact Support" button
+    And User selects issue category "Ride Problem"
+    And User describes the issue "Driver didn't show up"
+    And User provides ride details
+    And User clicks on "Submit" button
+    Then User should see "Support ticket created" message
+    And User should receive ticket number
+    And Support team should respond within 2 hours
+
+  @support
+  Scenario: User reports safety incident
+    When User goes to "Safety" section
+    And User clicks on "Report Incident" button
+    And User selects incident type "Driver Behavior"
+    And User describes the incident
+    And User uploads photo evidence
+    And User clicks on "Submit Report" button
+    Then User should see "Incident reported successfully" message
+    And Report should be reviewed by safety team
+    And User should receive investigation update within 24 hours
+
+  @support
+  Scenario: User accesses help documentation
+    When User goes to "Help Center" section
+    And User searches for "How to book a ride"
+    Then User should see relevant help articles
+    And User should see step-by-step instructions
+    And User should see video tutorials
+    And User should see FAQ section
+
+  # Feature 12: SafeBoda Business Services
+  @business
+  Scenario: Business user registers for corporate account
+    When User goes to "Business" section
+    And User clicks on "Register Business" button
+    And User enters company name "Tech Solutions Ltd"
+    And User enters business email "admin@techsolutions.ug"
+    And User provides business registration details
+    And User clicks on "Submit Application" button
+    Then User should see "Application submitted successfully" message
+    And Business account should be reviewed within 48 hours
+    And User should receive approval notification
+
+  @business
+  Scenario: Business user manages employee rides
+    When User logs in to business account
+    And User goes to "Employee Management" section
+    And User adds employee "Jane Smith"
+    And User sets ride budget "100000 UGX per month"
+    And User clicks on "Save Employee" button
+    Then User should see "Employee added successfully" message
+    And Employee should receive ride credits
+    And Employee should be able to book rides
+    And Business should be billed monthly
+
+  @business
+  Scenario: Business user views ride analytics
+    When User goes to "Analytics" section in business account
+    Then User should see employee ride statistics
+    And User should see cost breakdown by department
+    And User should see popular routes and times
+    And User should see expense reports
+    And User should see budget utilization 

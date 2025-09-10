@@ -1,0 +1,372 @@
+Feature: Refactory Academy Learning Platform
+  As a student
+  I want to learn programming and technology skills
+  So that I can advance my career in the tech industry
+
+  Background:
+    Given User opens browser and navigates to Refactory Academy website
+
+  # Feature 1: Course Discovery and Browsing
+  @courses
+  Scenario: User browses available courses
+    When User clicks on "Courses" section
+    Then User should see list of programming courses
+    And User should see course descriptions and durations
+    And User should see course difficulty levels
+    And User should see instructor information
+    And User should see course prices and discounts
+
+  @courses
+  Scenario: User searches for specific course
+    When User enters "Python Programming" in search field
+    And User clicks on "Search" button
+    Then User should see Python programming courses
+    And User should see course details and curriculum
+    And User should see enrollment options
+    And User should see "Enroll Now" buttons
+
+  @courses
+  Scenario: User filters courses by category
+    When User goes to "Course Categories" section
+    And User selects "Web Development" category
+    Then User should see web development courses
+    And User should see courses like "JavaScript", "React", "Node.js"
+    And User should see course ratings and reviews
+    And User should see student enrollment counts
+
+  # Feature 2: User Registration and Profile
+  @profile
+  Scenario: New student creates account
+    When User clicks on "Sign Up" button
+    And User enters full name "John Doe"
+    And User enters email "john.doe@example.com"
+    And User enters password "SecurePass123"
+    And User enters phone number "08012345678"
+    And User clicks on "Create Account" button
+    Then User should receive email verification
+    And User should be prompted to verify email address
+
+  @profile
+  Scenario: User completes student profile
+    When User goes to "Complete Profile" section
+    And User enters educational background "Computer Science"
+    And User enters work experience "2 years"
+    And User selects learning goals "Career Change"
+    And User enters preferred learning schedule "Evenings"
+    And User clicks on "Save Profile" button
+    Then User should see "Profile completed successfully" message
+    And User should receive personalized course recommendations
+
+  @profile
+  Scenario: User uploads profile picture
+    When User goes to "Profile Settings"
+    And User clicks on "Upload Photo" button
+    And User selects profile picture from device
+    And User crops photo to square format
+    And User clicks on "Save Photo" button
+    Then User should see new profile picture
+    And Photo should appear in user profile
+
+  # Feature 3: Course Enrollment and Payment
+  @enrollment
+  Scenario: User enrolls in a course
+    When User selects "Python for Beginners" course
+    And User clicks on "Enroll Now" button
+    And User selects enrollment plan "Full Course"
+    And User clicks on "Proceed to Payment" button
+    Then User should see payment options
+    And User should see course total and breakdown
+    And User should see "Complete Enrollment" button
+
+  @enrollment
+  Scenario: User pays for course with card
+    When User selects "Credit Card" payment method
+    And User enters card number "4111111111111111"
+    And User enters expiry date "12/25"
+    And User enters CVV "123"
+    And User clicks on "Pay Now" button
+    Then User should see "Payment successful" message
+    And User should receive enrollment confirmation email
+    And User should have access to course materials
+
+  @enrollment
+  Scenario: User applies scholarship discount
+    When User goes to "Scholarships" section
+    And User finds applicable scholarship "Women in Tech"
+    And User clicks on "Apply for Scholarship" button
+    And User fills in application form
+    And User submits required documents
+    And User clicks on "Submit Application" button
+    Then User should see "Application submitted successfully" message
+    And User should receive scholarship review notification
+    And Discount should be applied if approved
+
+  # Feature 4: Learning Experience
+  @learning
+  Scenario: User accesses course materials
+    When User logs in to enrolled course
+    Then User should see course dashboard
+    And User should see video lectures and materials
+    And User should see progress tracking
+    And User should see upcoming assignments
+    And User should see discussion forums
+
+  @learning
+  Scenario: User watches video lecture
+    When User clicks on "Video Lectures" section
+    And User selects "Introduction to Python" lecture
+    And User clicks on "Play" button
+    Then User should see video player with lecture
+    And User should see lecture notes and resources
+    And User should see progress indicator
+    And User should see "Mark as Complete" button
+
+  @learning
+  Scenario: User downloads course materials
+    When User goes to "Course Materials" section
+    And User clicks on "Download PDF" for lecture notes
+    Then User should see download progress
+    And PDF should be downloaded to device
+    And User should see "Download Complete" message
+
+  # Feature 5: Assignments and Assessments
+  @assignments
+  Scenario: User submits assignment
+    When User goes to "Assignments" section
+    And User clicks on "Submit Assignment" for "Python Basics"
+    And User uploads completed code file
+    And User adds comments explaining solution
+    And User clicks on "Submit" button
+    Then User should see "Assignment submitted successfully" message
+    And User should receive submission confirmation
+    And Instructor should be notified of submission
+
+  @assignments
+  Scenario: User receives assignment feedback
+    When Instructor reviews submitted assignment
+    And Instructor provides feedback and grade
+    Then User should receive feedback notification
+    And User should see detailed feedback comments
+    And User should see assignment grade
+    And User should see areas for improvement
+
+  @assignments
+  Scenario: User takes online quiz
+    When User goes to "Quizzes" section
+    And User clicks on "Start Quiz" for "Python Fundamentals"
+    And User answers multiple choice questions
+    And User clicks on "Submit Quiz" button
+    Then User should see quiz results immediately
+    And User should see correct and incorrect answers
+    And User should see overall score
+    And User should see explanations for answers
+
+  # Feature 6: Progress Tracking and Certificates
+  @progress
+  Scenario: User tracks learning progress
+    When User goes to "My Progress" section
+    Then User should see course completion percentage
+    And User should see completed modules and lessons
+    And User should see remaining assignments
+    And User should see estimated completion date
+    And User should see achievement badges
+
+  @progress
+  Scenario: User earns course certificate
+    When User completes all course requirements
+    And User passes final assessment
+    Then User should see "Course Completed" notification
+    And User should receive downloadable certificate
+    And Certificate should be shareable on LinkedIn
+    And User should see "Congratulations" message
+
+  @progress
+  Scenario: User views learning analytics
+    When User goes to "Learning Analytics" section
+    Then User should see study time statistics
+    And User should see quiz performance trends
+    And User should see assignment completion rates
+    And User should see learning streak information
+    And User should see improvement suggestions
+
+  # Feature 7: Community and Collaboration
+  @community
+  Scenario: User participates in discussion forum
+    When User goes to "Discussion Forum" section
+    And User clicks on "New Post" button
+    And User writes question about Python debugging
+    And User clicks on "Post Question" button
+    Then User should see "Question posted successfully" message
+    And Other students should see the question
+    And Instructors should be able to respond
+
+  @community
+  Scenario: User joins study group
+    When User goes to "Study Groups" section
+    And User clicks on "Join Group" for "Python Beginners"
+    Then User should see "Joined study group" message
+    And User should see group members list
+    And User should see group discussion threads
+    And User should receive group notifications
+
+  @community
+  Scenario: User attends virtual office hours
+    When User goes to "Office Hours" section
+    And User clicks on "Join Session" for instructor
+    Then User should be connected to virtual meeting
+    And User should see instructor and other students
+    And User should be able to ask questions
+    And User should see screen sharing capabilities
+
+  # Feature 8: Mentorship and Support
+  @mentorship
+  Scenario: User requests mentorship session
+    When User goes to "Mentorship" section
+    And User clicks on "Book Session" button
+    And User selects mentor "Sarah Johnson"
+    And User selects topic "Career Guidance"
+    And User selects preferred time slot
+    And User clicks on "Book Session" button
+    Then User should see "Session booked successfully" message
+    And User should receive calendar invitation
+    And Mentor should be notified of booking
+
+  @mentorship
+  Scenario: User attends mentorship session
+    When User joins scheduled mentorship call
+    Then User should see mentor in video call
+    And User should be able to share screen
+    And User should see session timer
+    And User should see "End Session" button
+    And User should receive session recording afterward
+
+  @mentorship
+  Scenario: User receives career guidance
+    When User completes mentorship session
+    And Mentor provides career advice and resources
+    Then User should receive session summary
+    And User should see recommended next steps
+    And User should see job search resources
+    And User should see follow-up session options
+
+  # Feature 9: Job Placement and Career Services
+  @career
+  Scenario: User accesses job board
+    When User goes to "Job Board" section
+    Then User should see available tech job listings
+    And User should see job descriptions and requirements
+    And User should see company information
+    And User should see "Apply Now" buttons
+    And User should see salary ranges
+
+  @career
+  Scenario: User applies for job position
+    When User clicks on "Apply Now" for "Junior Python Developer"
+    And User uploads resume and cover letter
+    And User fills in application form
+    And User clicks on "Submit Application" button
+    Then User should see "Application submitted successfully" message
+    And User should receive application confirmation
+    And Company should be notified of application
+
+  @career
+  Scenario: User attends career workshop
+    When User goes to "Career Workshops" section
+    And User clicks on "Register" for "Interview Preparation"
+    And User selects workshop date and time
+    And User clicks on "Confirm Registration" button
+    Then User should see "Registration confirmed" message
+    And User should receive workshop details
+    And User should see preparation materials
+
+  # Feature 10: Alumni Network and Events
+  @alumni
+  Scenario: User joins alumni network
+    When User completes course and graduates
+    And User clicks on "Join Alumni Network" button
+    Then User should see "Welcome to Alumni Network" message
+    And User should see alumni directory
+    And User should see networking events
+    And User should see mentorship opportunities
+
+  @alumni
+  Scenario: User attends alumni event
+    When User goes to "Alumni Events" section
+    And User clicks on "Register" for "Tech Meetup"
+    And User selects attendance option "In-Person"
+    And User clicks on "Confirm Registration" button
+    Then User should see "Event registration confirmed" message
+    And User should receive event details and location
+    And User should see attendee list
+
+  @alumni
+  Scenario: User connects with alumni
+    When User browses alumni directory
+    And User clicks on "Connect" for alumni "Mike Chen"
+    And User sends connection message "Hi Mike, I'm also a Python graduate"
+    And User clicks on "Send Request" button
+    Then User should see "Connection request sent" message
+    And Alumni should receive connection request
+    And User should be able to message once connected
+
+  # Feature 11: Technical Support and Help
+  @support
+  Scenario: User contacts technical support
+    When User goes to "Help & Support" section
+    And User clicks on "Contact Support" button
+    And User selects issue category "Technical Problem"
+    And User describes the issue "Can't access course materials"
+    And User provides screenshots
+    And User clicks on "Submit Ticket" button
+    Then User should see "Support ticket created" message
+    And User should receive ticket number
+    And Support team should respond within 4 hours
+
+  @support
+  Scenario: User accesses help documentation
+    When User goes to "Help Center" section
+    And User searches for "How to submit assignment"
+    Then User should see relevant help articles
+    And User should see step-by-step instructions
+    And User should see video tutorials
+    And User should see FAQ section
+
+  @support
+  Scenario: User reports course issue
+    When User is experiencing course content problem
+    And User clicks on "Report Issue" button
+    And User selects issue type "Content Error"
+    And User describes the specific problem
+    And User clicks on "Submit Report" button
+    Then User should see "Issue reported successfully" message
+    And Course team should be notified
+    And Issue should be resolved within 24 hours
+
+  # Feature 12: Mobile Learning and Accessibility
+  @mobile
+  Scenario: User accesses course on mobile device
+    When User opens Refactory Academy app
+    And User logs in with credentials
+    Then User should see mobile-optimized course dashboard
+    And User should be able to watch video lectures
+    And User should be able to complete assignments
+    And User should see progress tracking
+    And User should receive mobile notifications
+
+  @mobile
+  Scenario: User downloads course for offline viewing
+    When User goes to "Download" section in mobile app
+    And User clicks on "Download" for course module
+    Then User should see download progress
+    And Module should be available offline
+    And User should see "Download Complete" message
+    And User should be able to view content without internet
+
+  @mobile
+  Scenario: User receives learning reminders
+    When User sets up learning schedule in mobile app
+    And User enables daily reminders
+    Then User should receive push notifications
+    And User should see "Time to study" reminders
+    And User should see progress updates
+    And User should see motivational messages 

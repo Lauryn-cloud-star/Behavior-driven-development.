@@ -1,0 +1,378 @@
+Feature: YouTube Music Streaming Platform
+  As a music lover
+  I want to stream and discover music
+  So that I can enjoy my favorite songs and discover new artists
+
+  Background:
+    Given User opens browser and navigates to YouTube Music website
+
+  # Feature 1: User Registration and Profile
+  @profile
+  Scenario: New user creates YouTube Music account
+    When User clicks on "Sign Up" button
+    And User enters email "musiclover@example.com"
+    And User enters password "MusicPass123"
+    And User enters full name "John Doe"
+    And User enters date of birth "1990-05-15"
+    And User clicks on "Create Account" button
+    Then User should receive email verification
+    And User should be prompted to verify email address
+
+  @profile
+  Scenario: User sets up music preferences
+    When User goes to "Music Preferences" section
+    And User selects favorite genres "Pop, Rock, Hip-Hop"
+    And User selects favorite artists "Drake, Taylor Swift, Ed Sheeran"
+    And User sets audio quality "High Quality"
+    And User enables "Explicit Content" option
+    And User clicks on "Save Preferences" button
+    Then User should see "Preferences saved successfully" message
+    And User should receive personalized music recommendations
+    And Home page should show relevant content
+
+  @profile
+  Scenario: User creates music profile
+    When User goes to "Profile Settings"
+    And User uploads profile picture
+    And User enters bio "Passionate about discovering new music"
+    And User sets profile to "Public"
+    And User clicks on "Save Profile" button
+    Then User should see "Profile updated successfully" message
+    And Profile should be visible to other users
+    And User should be able to share music activity
+
+  # Feature 2: Music Discovery and Browsing
+  @discovery
+  Scenario: User browses trending music
+    When User goes to "Trending" section
+    Then User should see trending songs and videos
+    And User should see "Trending Now" playlists
+    And User should see popular music videos
+    And User should see chart-topping songs
+    And User should see "Play" buttons for each track
+
+  @discovery
+  Scenario: User searches for specific song
+    When User enters "Shape of You" in search field
+    And User clicks on "Search" button
+    Then User should see search results for "Shape of You"
+    And User should see song by Ed Sheeran
+    And User should see music video option
+    And User should see related songs and artists
+    And User should see "Add to Playlist" option
+
+  @discovery
+  Scenario: User explores music genres
+    When User clicks on "Browse" section
+    And User selects "Hip-Hop" genre
+    Then User should see hip-hop songs and playlists
+    And User should see hip-hop artists
+    And User should see hip-hop music videos
+    And User should see "New Releases" in hip-hop
+    And User should see "Trending" hip-hop tracks
+
+  # Feature 3: Music Streaming and Playback
+  @streaming
+  Scenario: User plays a song
+    When User clicks on "Play" button for a song
+    Then User should see music player interface
+    And User should see song title and artist
+    And User should see album artwork
+    And User should see play/pause controls
+    And User should see progress bar and duration
+    And User should see volume controls
+
+  @streaming
+  Scenario: User controls playback
+    When User is playing a song
+    And User clicks on "Pause" button
+    Then Music should pause
+    And User should see "Play" button
+    When User clicks on "Next" button
+    Then Next song should start playing
+    And User should see new song information
+
+  @streaming
+  Scenario: User adjusts audio settings
+    When User goes to "Audio Settings"
+    And User sets equalizer to "Bass Boost"
+    And User enables "Crossfade" option
+    And User sets crossfade duration to "3 seconds"
+    And User clicks on "Save Settings" button
+    Then User should see "Audio settings saved" message
+    And Audio should be enhanced with bass boost
+    And Songs should crossfade between tracks
+
+  # Feature 4: Playlist Management
+  @playlists
+  Scenario: User creates new playlist
+    When User goes to "Library" section
+    And User clicks on "Create Playlist" button
+    And User enters playlist name "My Favorites"
+    And User sets playlist to "Private"
+    And User clicks on "Create" button
+    Then User should see "Playlist created successfully" message
+    And Playlist should appear in user's library
+    And User should be able to add songs to playlist
+
+  @playlists
+  Scenario: User adds songs to playlist
+    When User finds a song to add
+    And User clicks on "Add to Playlist" button
+    And User selects "My Favorites" playlist
+    And User clicks on "Add" button
+    Then User should see "Song added to playlist" message
+    And Song should appear in playlist
+    And Playlist should show updated song count
+
+  @playlists
+  Scenario: User manages playlist
+    When User opens "My Favorites" playlist
+    And User clicks on "Edit Playlist" button
+    And User reorders songs by dragging
+    And User removes unwanted song
+    And User clicks on "Save Changes" button
+    Then User should see "Playlist updated successfully" message
+    And Songs should be in new order
+    And Removed song should no longer appear
+
+  # Feature 5: Music Recommendations
+  @recommendations
+  Scenario: User receives personalized recommendations
+    When User browses "Home" page
+    Then User should see "Recommended for You" section
+    And User should see songs based on listening history
+    And User should see "Discover Mix" playlist
+    And User should see "New Releases" from favorite artists
+    And User should see "Trending" in user's genres
+
+  @recommendations
+  Scenario: User discovers new artists
+    When User goes to "Discover" section
+    Then User should see "Artist Spotlight" features
+    And User should see "New Artists" recommendations
+    And User should see "Similar Artists" suggestions
+    And User should see "Upcoming Releases" calendar
+    And User should see "Artist Interviews" content
+
+  @recommendations
+  Scenario: User gets daily mix playlists
+    When User goes to "Your Mix" section
+    Then User should see "Daily Mix 1" playlist
+    And User should see "Daily Mix 2" playlist
+    And User should see "Daily Mix 3" playlist
+    And Each mix should contain different genres
+    And Mixes should update daily based on listening
+
+  # Feature 6: Offline Listening
+  @offline
+  Scenario: User downloads songs for offline listening
+    When User finds a song to download
+    And User clicks on "Download" button
+    And User selects download quality "High"
+    Then User should see "Download started" message
+    And Song should download to device
+    And User should see "Download Complete" notification
+    And Song should be available offline
+
+  @offline
+  Scenario: User downloads playlist for offline
+    When User opens a playlist
+    And User clicks on "Download Playlist" button
+    And User selects "Download All" option
+    Then User should see "Downloading playlist" progress
+    And All songs in playlist should download
+    And Playlist should be available offline
+    And User should see download completion notification
+
+  @offline
+  Scenario: User manages offline content
+    When User goes to "Downloads" section
+    Then User should see all downloaded songs
+    And User should see downloaded playlists
+    And User should see storage usage information
+    And User should see "Remove Download" options
+    And User should see "Download Settings" options
+
+  # Feature 7: Social Features and Sharing
+  @social
+  Scenario: User shares song with friends
+    When User is playing a song
+    And User clicks on "Share" button
+    And User selects "Share to WhatsApp"
+    And User selects friend "Sarah"
+    And User clicks on "Send" button
+    Then User should see "Song shared successfully" message
+    And Friend should receive song link
+    And Friend should be able to play the song
+
+  @social
+  Scenario: User follows other users
+    When User finds another user's profile
+    And User clicks on "Follow" button
+    Then User should see "Following" status
+    And User should see followed user's activity
+    And User should receive notifications about their activity
+    And User should see their playlists in feed
+
+  @social
+  Scenario: User creates and shares playlist
+    When User creates a new playlist
+    And User adds several songs to playlist
+    And User sets playlist to "Public"
+    And User clicks on "Share Playlist" button
+    Then User should see "Playlist shared successfully" message
+    And Playlist should be visible to other users
+    And Other users should be able to follow playlist
+    And User should see follower count
+
+  # Feature 8: Music Videos and Visual Content
+  @videos
+  Scenario: User watches music videos
+    When User clicks on "Music Videos" section
+    And User selects a music video
+    And User clicks on "Play" button
+    Then User should see full-screen video player
+    And User should see video controls
+    And User should see video quality options
+    And User should see "Full Screen" button
+    And User should see "Picture-in-Picture" option
+
+  @videos
+  Scenario: User discovers music video playlists
+    When User goes to "Video Playlists" section
+    Then User should see "Trending Music Videos"
+    And User should see "New Music Videos"
+    And User should see "Live Performances"
+    And User should see "Behind the Scenes" content
+    And User should see "Music Video Interviews"
+
+  @videos
+  Scenario: User creates video playlist
+    When User goes to "My Video Playlists"
+    And User clicks on "Create Video Playlist"
+    And User enters playlist name "My Music Videos"
+    And User adds music videos to playlist
+    And User clicks on "Save Playlist" button
+    Then User should see "Video playlist created" message
+    And Playlist should contain selected videos
+    And User should be able to play playlist
+
+  # Feature 9: Premium Features and Subscription
+  @premium
+  Scenario: User subscribes to YouTube Music Premium
+    When User clicks on "Try Premium" button
+    And User selects "Individual Plan"
+    And User enters payment information
+    And User clicks on "Start Premium" button
+    Then User should see "Welcome to Premium" message
+    And User should have access to premium features
+    And User should see "Premium" badge on profile
+    And User should be able to download songs
+
+  @premium
+  Scenario: User uses premium features
+    When User has Premium subscription
+    Then User should be able to download songs
+    And User should have ad-free listening
+    And User should have background play
+    And User should have high-quality audio
+    And User should have offline listening
+    And User should have unlimited skips
+
+  @premium
+  Scenario: User manages subscription
+    When User goes to "Subscription Settings"
+    And User clicks on "Manage Subscription"
+    Then User should see current plan details
+    And User should see billing information
+    And User should see "Cancel Subscription" option
+    And User should see "Change Plan" option
+    And User should see payment history
+
+  # Feature 10: Radio and Stations
+  @radio
+  Scenario: User starts a radio station
+    When User finds a song or artist
+    And User clicks on "Start Radio" button
+    Then User should see "Radio started" message
+    And Radio should play similar songs
+    And User should see "Radio" indicator
+    And User should see "Thumbs Up/Down" buttons
+    And User should see "Skip" option
+
+  @radio
+  Scenario: User customizes radio station
+    When User is listening to radio
+    And User clicks "Thumbs Up" on a song
+    Then Radio should learn user preference
+    And Similar songs should be played more often
+    And User should see "Liked" indicator
+    And Song should be added to liked songs
+
+  @radio
+  Scenario: User discovers new radio stations
+    When User goes to "Radio" section
+    Then User should see "Featured Stations"
+    And User should see "Genre Stations"
+    And User should see "Mood Stations"
+    And User should see "Artist Stations"
+    And User should see "Decade Stations"
+
+  # Feature 11: Lyrics and Song Information
+  @lyrics
+  Scenario: User views song lyrics
+    When User is playing a song
+    And User clicks on "Lyrics" button
+    Then User should see synchronized lyrics
+    And Lyrics should highlight current line
+    And User should see "Full Lyrics" option
+    And User should see "Share Lyrics" option
+    And User should see "Copy Lyrics" option
+
+  @lyrics
+  Scenario: User explores song information
+    When User clicks on song title
+    Then User should see song details
+    And User should see album information
+    And User should see release date
+    And User should see song duration
+    And User should see genre and tags
+    And User should see "Similar Songs" section
+
+  @lyrics
+  Scenario: User saves favorite lyrics
+    When User views song lyrics
+    And User clicks on "Save Lyrics" button
+    Then User should see "Lyrics saved" message
+    And Lyrics should appear in "Saved Lyrics" section
+    And User should be able to access saved lyrics later
+    And User should see "Remove from Saved" option
+
+  # Feature 12: Smart Features and AI
+  @smart
+  Scenario: User uses voice commands
+    When User clicks on "Voice Search" button
+    And User says "Play Ed Sheeran songs"
+    Then User should see "Listening..." indicator
+    And Search should be performed by voice
+    And Ed Sheeran songs should appear in results
+    And User should see "Play All" option
+
+  @smart
+  Scenario: User gets smart recommendations
+    When User listens to music regularly
+    Then AI should learn user preferences
+    And User should receive "Smart Mix" playlists
+    And User should see "Because you listened to..." recommendations
+    And User should see "Discover Weekly" playlist
+    And Recommendations should improve over time
+
+  @smart
+  Scenario: User uses smart playlists
+    When User goes to "Smart Playlists" section
+    Then User should see "Recently Played" playlist
+    And User should see "Most Played" playlist
+    And User should see "Liked Songs" playlist
+    And User should see "New Releases" playlist
+    And Playlists should update automatically 

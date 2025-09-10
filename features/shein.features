@@ -1,0 +1,355 @@
+Feature: Shein Fashion E-commerce Platform
+  As a fashion-conscious customer
+  I want to shop for trendy clothing and accessories
+  So that I can stay fashionable and express my style
+
+  Background:
+    Given User opens browser and navigates to Shein website
+
+  # Feature 1: Fashion Discovery and Browsing
+  @discovery
+  Scenario: User browses women's clothing categories
+    When User clicks on "Women" category
+    And User selects "Dresses" subcategory
+    Then User should see various dress styles
+    And User should see dress images and prices
+    And User should see filter options for size, color, and price
+
+  @discovery
+  Scenario: User searches for specific fashion item
+    When User enters "summer dress" in the search field
+    And User clicks on the search button
+    Then User should see summer dress results
+    And User should see product images and prices
+    And User should see "Add to Wishlist" buttons
+
+  @discovery
+  Scenario: User applies fashion filters
+    When User searches for "jeans"
+    And User applies size filter "M"
+    And User applies color filter "Blue"
+    And User applies price filter "Under $50"
+    Then User should see filtered jeans results
+    And All results should meet selected criteria
+    And User should see filter count
+
+  # Feature 2: User Registration and Profile
+  @profile
+  Scenario: New user creates Shein account
+    When User clicks on "Sign Up" button
+    And User enters email address "fashionista@example.com"
+    And User enters password "StylePass123"
+    And User enters phone number "08012345678"
+    And User clicks on "Create Account" button
+    Then User should receive email verification
+    And User should be prompted to verify email address
+
+  @profile
+  Scenario: User sets up fashion profile
+    When User goes to "Style Profile" section
+    And User selects style preferences "Casual, Streetwear"
+    And User selects size preferences "M, L"
+    And User selects color preferences "Black, White, Blue"
+    And User clicks on "Save Preferences" button
+    Then User should see "Profile updated successfully" message
+    And User should receive personalized recommendations
+
+  @profile
+  Scenario: User adds shipping addresses
+    When User goes to "Address Book" section
+    And User clicks on "Add New Address"
+    And User enters address "123 Fashion Street, Lagos"
+    And User enters apartment number "Apt 3B"
+    And User enters phone number "08012345678"
+    And User clicks on "Save Address" button
+    Then User should see "Address saved successfully" message
+    And Address should appear in saved addresses list
+
+  # Feature 3: Product Browsing and Selection
+  @browsing
+  Scenario: User views product details
+    When User clicks on a dress product
+    Then User should see product images gallery
+    And User should see product description and materials
+    And User should see available sizes and colors
+    And User should see customer reviews and ratings
+    And User should see "Add to Cart" and "Add to Wishlist" buttons
+
+  @browsing
+  Scenario: User selects product size and color
+    When User views product details
+    And User selects size "M"
+    And User selects color "Navy Blue"
+    And User clicks on "Add to Cart" button
+    Then User should see "Item added to cart" message
+    And Selected size and color should be saved
+    And Cart icon should show updated count
+
+  @browsing
+  Scenario: User browses trending items
+    When User clicks on "Trending Now" section
+    Then User should see popular fashion items
+    And User should see "Trending" badges on items
+    And User should see price ranges and discounts
+    And User should see "Shop Now" buttons
+
+  # Feature 4: Shopping Cart Management
+  @cart
+  Scenario: User adds fashion items to cart
+    When User clicks on "Add to Cart" for a dress
+    And User selects size "S" and color "Red"
+    And User clicks on "Add to Cart" button
+    Then User should see "Item added to cart" confirmation
+    And Cart icon should show updated item count
+    And Item should appear in mini cart preview
+
+  @cart
+  Scenario: User views shopping cart contents
+    When User clicks on cart icon
+    Then User should see all added fashion items
+    And User should see individual item prices
+    And User should see selected sizes and colors
+    And User should see subtotal and shipping cost
+    And User should see "Proceed to Checkout" button
+
+  @cart
+  Scenario: User updates cart quantities
+    When User opens shopping cart
+    And User changes quantity of dress from "1" to "2"
+    And User clicks on "Update Cart" button
+    Then User should see updated quantity in cart
+    And Cart total should be recalculated
+    And User should see updated item price
+
+  # Feature 5: Wishlist Management
+  @wishlist
+  Scenario: User adds items to wishlist
+    When User is logged in to account
+    And User views a fashion item
+    And User clicks on "Add to Wishlist" button
+    Then User should see "Added to wishlist" confirmation
+    And Item should appear in user's wishlist
+    And Wishlist icon should show updated count
+
+  @wishlist
+  Scenario: User moves item from wishlist to cart
+    When User opens wishlist page
+    And User clicks on "Add to Cart" for a wishlist item
+    And User selects size and color
+    And User clicks on "Add to Cart" button
+    Then User should see "Item moved to cart" message
+    And Item should be removed from wishlist
+    And Item should appear in shopping cart
+
+  @wishlist
+  Scenario: User shares wishlist with friends
+    When User opens wishlist page
+    And User clicks on "Share Wishlist" button
+    And User enters friend's email "friend@example.com"
+    And User clicks on "Send" button
+    Then User should see "Wishlist shared successfully" message
+    And Friend should receive wishlist link via email
+
+  # Feature 6: Checkout and Payment
+  @checkout
+  Scenario: User proceeds to checkout
+    When User has items in cart
+    And User clicks on "Proceed to Checkout"
+    Then User should see delivery address selection
+    And User should see payment method options
+    And User should see order summary with items
+    And User should see shipping and tax calculations
+    And User should see "Place Order" button
+
+  @checkout
+  Scenario: User applies discount code
+    When User is on checkout page
+    And User enters discount code "SHEIN20"
+    And User clicks on "Apply Code" button
+    Then User should see "Discount applied successfully" message
+    And Discount should be applied to total
+    And User should see reduced final amount
+
+  @checkout
+  Scenario: User completes purchase with card
+    When User fills in delivery address details
+    And User selects "Credit Card" payment method
+    And User enters valid card details
+    And User clicks on "Place Order" button
+    Then User should see "Order placed successfully" message
+    And User should receive order confirmation email
+    And User should see order tracking number
+
+  # Feature 7: Style Recommendations
+  @recommendations
+  Scenario: User receives personalized recommendations
+    When User browses fashion items
+    Then User should see "Recommended for You" section
+    And User should see items based on browsing history
+    And User should see items matching style preferences
+    And User should see "Why we recommend this" explanations
+
+  @recommendations
+  Scenario: User discovers new styles
+    When User clicks on "Discover" section
+    Then User should see trending fashion styles
+    And User should see outfit combinations
+    And User should see style inspiration photos
+    And User should see "Shop the Look" buttons
+
+  @recommendations
+  Scenario: User gets size recommendations
+    When User views a product
+    And User clicks on "Size Guide" button
+    Then User should see size chart for the item
+    And User should see measurement instructions
+    And User should see "Find My Size" tool
+    And User should see recommended size based on measurements
+
+  # Feature 8: Customer Reviews and Ratings
+  @reviews
+  Scenario: User reads product reviews
+    When User opens a product page
+    And User scrolls to "Customer Reviews" section
+    Then User should see star ratings for the product
+    And User should see written reviews from customers
+    And User should see review photos from customers
+    And User should see review dates and customer names
+
+  @reviews
+  Scenario: User writes a product review
+    When User purchases a fashion item
+    And User receives delivery confirmation
+    And User clicks on "Write Review" button
+    And User gives 5-star rating for quality
+    And User gives 4-star rating for fit
+    And User writes review "Perfect fit and great quality!"
+    And User uploads photo wearing the item
+    And User clicks on "Submit Review" button
+    Then User should see "Review submitted successfully" message
+    And Review should appear in product reviews section
+
+  @reviews
+  Scenario: User rates delivery experience
+    When User receives order delivery
+    And User clicks on "Rate Delivery" button
+    And User gives delivery rating "5 stars"
+    And User selects "Fast delivery" tag
+    And User clicks on "Submit Rating" button
+    Then User should see "Rating submitted" message
+    And Rating should contribute to delivery partner score
+
+  # Feature 9: Order Tracking and History
+  @tracking
+  Scenario: User tracks order delivery
+    When User goes to "My Orders" section
+    And User clicks on "Track Order" for recent order
+    Then User should see current order status
+    And User should see estimated delivery date
+    And User should see delivery tracking updates
+    And User should see "Contact Support" option
+
+  @tracking
+  Scenario: User views order history
+    When User goes to "Order History" section
+    Then User should see list of previous orders
+    And User should see order dates and statuses
+    And User should see order amounts and items
+    And User should see "Reorder" buttons for past orders
+
+  @tracking
+  Scenario: User reorders previous items
+    When User clicks on "Reorder" for previous order
+    Then User should see previous order items added to cart
+    And User should see "Reorder successful" message
+    And User should be taken to checkout page
+    And Previous delivery address should be pre-filled
+
+  # Feature 10: Customer Support and Returns
+  @support
+  Scenario: User contacts customer support
+    When User clicks on "Help & Support" section
+    And User selects "Contact Us" option
+    And User fills in support form with issue details
+    And User uploads relevant photos
+    And User clicks on "Submit" button
+    Then User should see "Support ticket created" message
+    And User should receive support ticket number
+    And Support team should respond within 24 hours
+
+  @support
+  Scenario: User initiates return process
+    When User goes to "Returns & Exchanges" section
+    And User selects order for return
+    And User selects items to return
+    And User selects return reason "Size doesn't fit"
+    And User clicks on "Start Return" button
+    Then User should see "Return initiated successfully" message
+    And User should receive return shipping label
+    And User should see return instructions
+
+  @support
+  Scenario: User requests size exchange
+    When User goes to "Exchanges" section
+    And User selects item for exchange
+    And User selects new size "L" instead of "M"
+    And User clicks on "Request Exchange" button
+    Then User should see "Exchange request submitted" message
+    And User should receive exchange confirmation
+    And New item should be shipped once return is received
+
+  # Feature 11: Fashion Community and Social Features
+  @community
+  Scenario: User joins fashion community
+    When User clicks on "Community" section
+    And User clicks on "Join Community" button
+    Then User should see fashion community feed
+    And User should see style posts from other users
+    And User should see "Like" and "Comment" options
+    And User should see "Share" buttons
+
+  @community
+  Scenario: User shares outfit photo
+    When User goes to "Share Your Style" section
+    And User uploads outfit photo
+    And User adds caption "My new Shein dress!"
+    And User adds hashtags "#SheinStyle #Fashion"
+    And User clicks on "Share" button
+    Then User should see "Style shared successfully" message
+    And Post should appear in community feed
+    And Other users should be able to like and comment
+
+  @community
+  Scenario: User follows fashion influencers
+    When User browses community feed
+    And User clicks on "Follow" for a fashion influencer
+    Then User should see "Following" status
+    And Influencer's posts should appear in user's feed
+    And User should receive notifications for new posts
+
+  # Feature 12: Loyalty Program and Rewards
+  @loyalty
+  Scenario: User joins loyalty program
+    When User goes to "Rewards" section
+    And User clicks on "Join Rewards Program" button
+    Then User should see "Welcome to Shein Rewards" message
+    And User should receive welcome bonus points
+    And User should see points balance and tier status
+
+  @loyalty
+  Scenario: User earns points from purchase
+    When User completes a purchase
+    Then User should see points earned notification
+    And Points should be added to user's account
+    And User should see progress toward next tier
+    And User should see available rewards
+
+  @loyalty
+  Scenario: User redeems points for discount
+    When User has sufficient points balance
+    And User goes to "Redeem Points" section
+    And User selects "₦1000 discount voucher"
+    And User clicks on "Redeem" button
+    Then User should see "Points redeemed successfully" message
+    And Discount voucher should be added to account
+    And User should see updated points balance 

@@ -1,0 +1,383 @@
+Feature: MovieBox Streaming Platform
+  As a movie and TV show enthusiast
+  I want to stream and discover entertainment content
+  So that I can enjoy movies and TV shows anytime, anywhere
+
+  Background:
+    Given User opens browser and navigates to MovieBox website
+
+  # Feature 1: User Registration and Profile
+  @profile
+  Scenario: New user creates MovieBox account
+    When User clicks on "Sign Up" button
+    And User enters email "movielover@example.com"
+    And User enters password "MoviePass123"
+    And User enters full name "John Doe"
+    And User enters date of birth "1990-05-15"
+    And User clicks on "Create Account" button
+    Then User should receive email verification
+    And User should be prompted to verify email address
+
+  @profile
+  Scenario: User sets up entertainment preferences
+    When User goes to "Content Preferences" section
+    And User selects favorite genres "Action, Comedy, Drama"
+    And User selects favorite actors "Tom Hanks, Meryl Streep"
+    And User sets content rating "PG-13 and below"
+    And User enables "Subtitles" by default
+    And User clicks on "Save Preferences" button
+    Then User should see "Preferences saved successfully" message
+    And User should receive personalized content recommendations
+    And Home page should show relevant movies and shows
+
+  @profile
+  Scenario: User creates viewing profile
+    When User goes to "Profile Settings"
+    And User uploads profile picture
+    And User enters bio "Love watching action movies and TV series"
+    And User sets profile to "Public"
+    And User enables "Share Watch History" option
+    And User clicks on "Save Profile" button
+    Then User should see "Profile updated successfully" message
+    And Profile should be visible to other users
+    And User should be able to share viewing activity
+
+  # Feature 2: Content Discovery and Browsing
+  @discovery
+  Scenario: User browses trending content
+    When User goes to "Trending Now" section
+    Then User should see trending movies and TV shows
+    And User should see "Top 10" lists
+    And User should see "Popular This Week" content
+    And User should see "New Releases" section
+    And User should see "Coming Soon" previews
+    And User should see "Play" and "Add to Watchlist" buttons
+
+  @discovery
+  Scenario: User searches for specific movie
+    When User enters "The Avengers" in search field
+    And User clicks on "Search" button
+    Then User should see search results for "The Avengers"
+    And User should see movie details and cast
+    And User should see "Watch Now" button
+    And User should see "Add to Watchlist" option
+    And User should see related movies and shows
+
+  @discovery
+  Scenario: User explores movie genres
+    When User clicks on "Genres" section
+    And User selects "Action" genre
+    Then User should see action movies and shows
+    And User should see "Action" subcategories
+    And User should see "Top Action Movies" list
+    And User should see "Action TV Series" section
+    And User should see "New Action Releases"
+
+  # Feature 3: Movie and TV Show Streaming
+  @streaming
+  Scenario: User starts watching a movie
+    When User clicks on "Watch Now" for a movie
+    Then User should see video player interface
+    And User should see movie title and year
+    And User should see play/pause controls
+    And User should see progress bar and duration
+    And User should see volume controls
+    And User should see "Full Screen" option
+    And User should see "Subtitles" option
+
+  @streaming
+  Scenario: User controls video playback
+    When User is watching a movie
+    And User clicks on "Pause" button
+    Then Video should pause
+    And User should see "Play" button
+    When User clicks on "Fast Forward" button
+    Then Video should skip forward
+    And User should see new position in timeline
+
+  @streaming
+  Scenario: User adjusts video settings
+    When User goes to "Video Settings"
+    And User sets video quality to "4K Ultra HD"
+    And User enables "Auto-play next episode"
+    And User sets subtitle language to "English"
+    And User clicks on "Save Settings" button
+    Then User should see "Settings saved" message
+    And Video should play in 4K quality
+    And Next episode should auto-play
+    And Subtitles should appear in English
+
+  # Feature 4: Watchlist Management
+  @watchlist
+  Scenario: User creates watchlist
+    When User finds a movie to save
+    And User clicks on "Add to Watchlist" button
+    Then User should see "Added to Watchlist" message
+    And Movie should appear in user's watchlist
+    And Watchlist count should increase
+    And User should see "Remove from Watchlist" option
+
+  @watchlist
+  Scenario: User manages watchlist
+    When User goes to "My Watchlist" section
+    Then User should see all saved movies and shows
+    And User should see "Recently Added" section
+    And User should see "Continue Watching" section
+    And User should see "Remove" buttons for each item
+    And User should see "Play" buttons for each item
+
+  @watchlist
+  Scenario: User organizes watchlist
+    When User opens watchlist
+    And User clicks on "Sort" button
+    And User selects "Sort by Date Added"
+    Then Watchlist should be reorganized
+    And Most recently added items should appear first
+    And User should see sort options "Title, Genre, Rating"
+
+  # Feature 5: Content Recommendations
+  @recommendations
+  Scenario: User receives personalized recommendations
+    When User browses "Home" page
+    Then User should see "Recommended for You" section
+    And User should see "Because you watched..." suggestions
+    And User should see "Trending in Your Genres" content
+    And User should see "New Releases You Might Like"
+    And User should see "Continue Watching" section
+
+  @recommendations
+  Scenario: User discovers new content
+    When User goes to "Discover" section
+    Then User should see "Editor's Picks" recommendations
+    And User should see "Hidden Gems" section
+    And User should see "Award Winners" collection
+    And User should see "Critically Acclaimed" movies
+    And User should see "Fan Favorites" shows
+
+  @recommendations
+  Scenario: User gets genre-based recommendations
+    When User watches several action movies
+    Then System should learn user preference
+    And User should see more action movie recommendations
+    And User should see "Action Movies You'll Love" section
+    And User should see similar action TV shows
+    And Recommendations should improve over time
+
+  # Feature 6: Offline Viewing
+  @offline
+  Scenario: User downloads movie for offline viewing
+    When User finds a movie to download
+    And User clicks on "Download" button
+    And User selects download quality "HD"
+    Then User should see "Download started" message
+    And Movie should download to device
+    And User should see download progress
+    And User should see "Download Complete" notification
+    And Movie should be available offline
+
+  @offline
+  Scenario: User downloads TV show episodes
+    When User opens a TV show
+    And User clicks on "Download Season" button
+    And User selects "Download All Episodes"
+    Then User should see "Downloading season" progress
+    And All episodes should download
+    And Season should be available offline
+    And User should see storage usage information
+
+  @offline
+  Scenario: User manages offline content
+    When User goes to "Downloads" section
+    Then User should see all downloaded content
+    And User should see "Downloaded Movies" section
+    And User should see "Downloaded TV Shows" section
+    And User should see storage usage
+    And User should see "Remove Download" options
+
+  # Feature 7: Social Features and Sharing
+  @social
+  Scenario: User shares movie with friends
+    When User is viewing a movie
+    And User clicks on "Share" button
+    And User selects "Share to WhatsApp"
+    And User selects friend "Sarah"
+    And User clicks on "Send" button
+    Then User should see "Movie shared successfully" message
+    And Friend should receive movie link
+    And Friend should be able to view movie details
+
+  @social
+  Scenario: User follows other users
+    When User finds another user's profile
+    And User clicks on "Follow" button
+    Then User should see "Following" status
+    And User should see followed user's activity
+    And User should receive notifications about their activity
+    And User should see their watchlists and reviews
+
+  @social
+  Scenario: User writes movie reviews
+    When User finishes watching a movie
+    And User clicks on "Write Review" button
+    And User gives 5-star rating
+    And User writes review "Amazing movie with great acting!"
+    And User clicks on "Submit Review" button
+    Then User should see "Review submitted successfully" message
+    And Review should appear on movie page
+    And Other users should see the review
+
+  # Feature 8: TV Shows and Series
+  @tvshows
+  Scenario: User browses TV series
+    When User goes to "TV Shows" section
+    Then User should see popular TV series
+    And User should see "New Seasons" section
+    And User should see "Binge-Worthy Shows" collection
+    And User should see "Award-Winning Series" section
+    And User should see "Trending TV Shows" list
+
+  @tvshows
+  Scenario: User watches TV series episodes
+    When User opens a TV show
+    And User clicks on "Watch Episode 1"
+    Then User should see episode player
+    And User should see episode title and number
+    And User should see "Next Episode" button
+    And User should see episode list
+    And User should see "Auto-play next episode" option
+
+  @tvshows
+  Scenario: User manages TV show progress
+    When User watches multiple episodes
+    Then User should see "Continue Watching" section
+    And User should see progress indicators for each show
+    And User should see "Resume Episode" buttons
+    And User should see "Mark as Watched" options
+    And User should see "Start Over" options
+
+  # Feature 9: Premium Features and Subscription
+  @premium
+  Scenario: User subscribes to MovieBox Premium
+    When User clicks on "Try Premium" button
+    And User selects "Monthly Plan"
+    And User enters payment information
+    And User clicks on "Start Premium" button
+    Then User should see "Welcome to Premium" message
+    And User should have access to premium features
+    And User should see "Premium" badge on profile
+    And User should be able to download content
+
+  @premium
+  Scenario: User uses premium features
+    When User has Premium subscription
+    Then User should be able to download movies and shows
+    And User should have ad-free viewing
+    And User should have 4K Ultra HD quality
+    And User should have multiple device streaming
+    And User should have offline viewing
+    And User should have early access to new releases
+
+  @premium
+  Scenario: User manages subscription
+    When User goes to "Subscription Settings"
+    And User clicks on "Manage Subscription"
+    Then User should see current plan details
+    And User should see billing information
+    And User should see "Cancel Subscription" option
+    And User should see "Change Plan" option
+    And User should see payment history
+
+  # Feature 10: Kids and Family Content
+  @kids
+  Scenario: User sets up kids profile
+    When User goes to "Kids" section
+    And User clicks on "Create Kids Profile"
+    And User enters child's name "Emma"
+    And User sets age "8 years old"
+    And User selects content rating "G and PG"
+    And User clicks on "Create Profile" button
+    Then User should see "Kids profile created" message
+    And Profile should show age-appropriate content
+    And Content should be filtered for children
+
+  @kids
+  Scenario: User browses kids content
+    When User switches to kids profile
+    Then User should see "Kids Movies" section
+    And User should see "Kids TV Shows" section
+    And User should see "Educational Content" section
+    And User should see "Animated Movies" collection
+    And User should see "Family-Friendly" content
+    And Content should be appropriate for children
+
+  @kids
+  Scenario: User manages kids viewing time
+    When User goes to "Parental Controls"
+    And User sets daily viewing limit "2 hours"
+    And User enables "Bedtime Lock" at "8:00 PM"
+    And User clicks on "Save Settings" button
+    Then User should see "Parental controls saved" message
+    And Kids profile should have viewing time limits
+    And Profile should lock at bedtime
+    And User should receive usage reports
+
+  # Feature 11: Search and Filtering
+  @search
+  Scenario: User uses advanced search
+    When User goes to "Advanced Search"
+    And User selects genre "Comedy"
+    And User selects year "2020-2023"
+    And User selects rating "PG-13"
+    And User clicks on "Search" button
+    Then User should see filtered results
+    And All results should match search criteria
+    And User should see "Clear Filters" option
+    And User should see "Save Search" option
+
+  @search
+  Scenario: User searches by actor
+    When User enters "Tom Hanks" in search field
+    And User clicks on "Search" button
+    Then User should see Tom Hanks movies and shows
+    And User should see "Movies starring Tom Hanks"
+    And User should see "TV Shows with Tom Hanks"
+    And User should see "Related Actors" suggestions
+    And User should see "Follow Tom Hanks" option
+
+  @search
+  Scenario: User browses by year and decade
+    When User goes to "Browse by Year" section
+    And User selects "2023"
+    Then User should see movies and shows from 2023
+    And User should see "2023 Releases" section
+    And User should see "2023 Award Winners"
+    And User should see "2023 Blockbusters"
+    And User should see year navigation options
+
+  # Feature 12: Smart Features and AI
+  @smart
+  Scenario: User uses voice search
+    When User clicks on "Voice Search" button
+    And User says "Show me action movies"
+    Then User should see "Listening..." indicator
+    And Search should be performed by voice
+    And Action movies should appear in results
+    And User should see "Voice Search Results" section
+
+  @smart
+  Scenario: User gets smart recommendations
+    When User watches movies regularly
+    Then AI should learn user preferences
+    And User should receive "Smart Recommendations"
+    And User should see "You might also like" suggestions
+    And User should see "Trending in Your Taste" content
+    And Recommendations should improve over time
+
+  @smart
+  Scenario: User uses smart playlists
+    When User goes to "Smart Collections" section
+    Then User should see "Recently Watched" collection
+    And User should see "Favorites" collection
+    And User should see "Watch Later" collection
+    And User should see "Recommended" collection
+    And Collections should update automatically 

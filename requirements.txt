@@ -1,0 +1,6 @@
+behave
+pytest
+pytest-html==4.1.1
+allure-behave==2.13.2
+requests==2.31.0
+python-dotenv==1.0.0 
